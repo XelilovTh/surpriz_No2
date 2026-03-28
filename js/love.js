@@ -89,14 +89,20 @@ function Next() {
     }
 }
 
-// Typing animation funksiyası
+// Typing animation funksiyası - yazını böyük ürəyin altına yerləşdirir
 function startTypingAnimation() {
     const textElement = document.querySelector('.typing-text');
     const typingContainer = document.querySelector('.typing-container');
     const message = "Səni çox sevirəm";
     let i = 0;
     
-    // Typing container-ı görünən et
+    // Ürəyin son mövqeyini al və yazını onun altına yerləşdir
+    const loveElement = document.querySelector('.love');
+    const loveRect = loveElement.getBoundingClientRect();
+    const loveBottom = loveRect.bottom;
+    
+    // Yazını ürəyin altına yerləşdir (20px boşluq)
+    typingContainer.style.top = (loveBottom + 20) + "px";
     typingContainer.style.opacity = "1";
     textElement.innerHTML = "";
     
@@ -122,10 +128,9 @@ function Rise() {
 
     timer2 = setInterval(() => {
         distance += speed;
-        // console.log(distance);
+        
         if (distance >= target) {
             clearInterval(timer2);
-
             console.log("升空完毕");
             // Ürək yuxarı qalxdıqdan dərhal sonra typing animasiyasını başlat
             startTypingAnimation();
